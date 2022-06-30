@@ -5,7 +5,6 @@ Import-Module PSWindowsUpdate
 function check_for_install ($software_list) {
    $software = Get-CimInstance -ClassName Win32_OperatingSystem |  Where-Object { $_.IdentifyingNumber -like $software_list } 
 }
-
 #Get & install windows update
 function update_windows {
    Get-WindowsUpdate
@@ -24,8 +23,9 @@ function office365_install {
       "configuration-Office365-x86.xml",          
       "uninstall.xml"
    )
+   Start-BitsTransfer "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_15225-20204.exe" -Destination "C:\Users\Public\Downloads"
    foreach ($xml in $xml_files){
-      start-Process -FilePath "setup.exe" -Wait -PassThru -ArgumentList "/configure", $xml
+      start-Process -FilePath "officedeploymenttool_15225-20204.exe" -Wait -PassThru -ArgumentList "/configure", $xml
    }   
 }
 function install-programs {
