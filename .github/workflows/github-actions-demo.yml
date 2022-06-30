@@ -1,0 +1,14 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: windows-latest
+    steps:
+      - name: Basic PowerShell commands
+        env:
+          MY_NAME: John Smith
+        run: |
+           get-date
+           write-output $env:MY_NAME
+        shell: powershell
+      - run: echo "🍏 This job's status is ${{ job.status }}."
