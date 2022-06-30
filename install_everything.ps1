@@ -41,7 +41,7 @@ function install-programs {
    }
 }
 
-update-windows-store
+update_windows_store
 update_windows
 office365_install
 install-programs
